@@ -8,11 +8,10 @@ function Favorites() {
   useEffect(() => {
     const getFavorites = async () => {
       try {
-        let favoritesCoin = JSON.parse(localStorage.getItem("favCoins")); // Usa el mismo nombre de clave
-        console.log("favoritesCoin from localStorage:", favoritesCoin);
+        let favoritesCoin = JSON.parse(localStorage.getItem("favCoins"));
 
         if (!favoritesCoin || favoritesCoin.length === 0) {
-          setFavorites([]); // Si no hay favoritos, dejar la lista vacía
+          setFavorites([]);
           return;
         }
 

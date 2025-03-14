@@ -7,7 +7,6 @@ const Coin = () => {
     const [favCoins, setFavCoins] = useState([]);
     const { id } = useParams();
 
-    // Obtener detalles de la moneda
     const getCoinDetail = async () => {
         try {
             const response = await axios.get(`https://api.coincap.io/v2/assets/${id}`);
@@ -17,11 +16,10 @@ const Coin = () => {
         }
     };
 
-    // Obtener favoritos de localStorage
     const getFavs = () => {
         const favs = localStorage.getItem("favCoins");
         if (favs) {
-            setFavCoins(JSON.parse(favs)); // Convertir la cadena en array
+            setFavCoins(JSON.parse(favs));
         }
     };
 
@@ -30,20 +28,17 @@ const Coin = () => {
         getFavs();
     }, [id]);
 
-    // Agregar a favoritos
     const addFavourite = () => {
         if (!favCoins.includes(id)) {
             const newFavs = [...favCoins, id];
             setFavCoins(newFavs);
-            localStorage.setItem("favCoins", JSON.stringify(newFavs)); // Guardar en localStorage
-        }
+            localStorage.setItem("favCoins", JSON.stringify(newFavs)); 
     };
 
-    // Eliminar de favoritos
     const deleteFavourite = () => {
         const newFavs = favCoins.filter(fav => fav !== id);
         setFavCoins(newFavs);
-        localStorage.setItem("favCoins", JSON.stringify(newFavs)); // Guardar en localStorage
+        localStorage.setItem("favCoins", JSON.stringify(newFavs));
     };
 
     return (
@@ -60,6 +55,7 @@ const Coin = () => {
             )}
         </>
     );
+    };
 };
 
 export default Coin;
